@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='16s_bacteria_detector',
+    name='bacteria_detector',
     version='1',
     packages=[''],
     url='',
