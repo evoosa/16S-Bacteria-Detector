@@ -6,3 +6,4 @@ DEFAULT_OUTPUT_DIR = './bacteria_detector_output'
 DEFAULT_QUEUE = 'public-himem'
 DEFAULT_JOB_CPU = '1'
 DEFAULT_JOB_MEM = '16000'
+
