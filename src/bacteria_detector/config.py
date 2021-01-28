@@ -1,6 +1,8 @@
 SUPPORTED_ALGORITHMS = ['swift']
-DEFAULT_INPUT_DIR = '/home/labs/bfreich/shaharr/microbiome_seq_290920/raw_data/results'
-DEFAULT_OUTPUT_DIR = './bacteria_detector_output'
+# DEFAULT_INPUT_DIR = '/home/labs/bfreich/shaharr/microbiome_seq_290920/raw_data/results'
+DEFAULT_INPUT_DIR = r'C:\Users\Maor\Documents\results'
+# DEFAULT_OUTPUT_DIR = './bacteria_detector_output'
+DEFAULT_OUTPUT_DIR = r'.\bacteria_detector_output'
 
 # Cluster Properties
 DEFAULT_QUEUE = 'public-himem'
