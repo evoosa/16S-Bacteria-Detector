@@ -1,9 +1,14 @@
 from bacteria_detector import config
+from bacteria_detector.algorithms.swift import swift
 
 
 def get_run_algorithm_cmd(sample_name: str, algorithm: str) -> str:
     """ Get the command needed to run the given algorithm on the sample data """
-    pass
+    if algorithm == 'swift':
+        return swift.get_run_cmd(sample_name)
+    else:
+        print(f'algorithm: "{algorithm}" not supported!')
+        return ''
 
 
 def get_run_on_cluster_cmd(sample_name: str,
@@ -11,3 +16,5 @@ def get_run_on_cluster_cmd(sample_name: str,
     """ Get the bsub command to run on the cluster """
     run_alg_cmd = 'CMD_TEMP'  # FIXME - get command for running the algorithm
     return f'bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name} -o {sample_name}.out -e {sample_name}.err {run_alg_cmd}'
+
+print(get_run_algorithm_cmd('ninin', 'swiftt'))
