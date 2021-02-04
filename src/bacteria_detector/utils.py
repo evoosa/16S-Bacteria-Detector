@@ -23,5 +23,4 @@ def get_run_on_cluster_cmd(sample_name: str, algorithm: str) -> str:
     return f'bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {unique_run_name} -o {unique_run_name}.out -e {unique_run_name}.err {run_alg_cmd}'
 
 
-print(get_run_on_cluster_cmd('nini', 'test'))
 
