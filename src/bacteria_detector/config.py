@@ -1,12 +1,12 @@
 import datetime
 
-SUPPORTED_ALGORITHMS = ['swift']
-DEFAULT_INPUT_DIR = '/home/labs/bfreich/shaharr/microbiome_seq_290920/raw_data/results'
-DEFAULT_BASE_OUTPUT_DIR = './bacteria_detector_output'
-# DEFAULT_INPUT_DIR = r'C:\Users\Maor\Documents\results'
-# DEFAULT_BASE_OUTPUT_DIR = r'.\bacteria_detector_output'
+SUPPORTED_ALGORITHMS = ['swift', 'test']
+# DEFAULT_INPUT_DIR = '/home/labs/bfreich/shaharr/microbiome_seq_290920/raw_data/results'
+DEFAULT_INPUT_DIR = '/home/labs/bfreich/maork/evoosa/16S-Bacteria-Detector/src/bacteria_detector/input'
+DEFAULT_BASE_OUTPUT_DIR = f'/home/labs/bfreich/maork/evoosa/output'
 now = datetime.datetime.now().strftime("%m_%d_%Y-%H_%M")
-output_dir = DEFAULT_BASE_OUTPUT_DIR + f'_{now}'
+OUTPUT_DIR = DEFAULT_BASE_OUTPUT_DIR + f'_{now}'
+RUN_LOG_OUTPUT_DIR = f'{OUTPUT_DIR}_run_logs'
 
 # Cluster Properties
 DEFAULT_QUEUE = 'gromacs'  # 'public-himem'
