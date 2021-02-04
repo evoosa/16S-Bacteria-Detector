@@ -2,6 +2,7 @@ from bacteria_detector import config
 from bacteria_detector.algorithms.swift import swift
 from bacteria_detector.algorithms.test import test
 import os
+from bacteria_detector.algorithms.swift.swift import create_swift_conf_file
 
 
 def get_run_algorithm_cmd(sample_name: str, algorithm: str) -> str:
@@ -16,7 +17,6 @@ def get_run_algorithm_cmd(sample_name: str, algorithm: str) -> str:
 
 
 def get_run_on_cluster_cmd(sample_name: str, algorithm: str) -> str:
-    # FIXME - output errors to a specific dir, even log it in future
     """ Get the bsub command to run on the cluster """
     run_alg_cmd = get_run_algorithm_cmd(sample_name, algorithm)
     log_path = os.path.join(config.RUN_LOG_OUTPUT_DIR, sample_name)
@@ -26,3 +26,11 @@ def get_run_on_cluster_cmd(sample_name: str, algorithm: str) -> str:
 def create_directory_if_missing(dir_name):
     if not os.path.exists(dir_name):
         os.makedirs(dir_name)
+
+
+def prepare_for_run():
+    create_swift_conf_file()
+    # Create the output directory, and log directory
+    create_directory_if_missing(config.OUTPUT_DIR)
+    create_directory_if_missing(config.RUN_LOG_OUTPUT_DIR)
+

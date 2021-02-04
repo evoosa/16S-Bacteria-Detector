@@ -1,8 +1,8 @@
 #!/bin/bash
 ## Swift Biosciences 16S Qiime 2 workflow
 ## Author Benli Chai & Sukhinder Sandhu 20190618
-## Remember to edit/set the parameters in config.txt file
-## Run as q2wkflow.sh config.txt inputDir workDir
+## Remember to edit/set the parameters in config_template.txt file
+## Run as q2wkflow.sh config_template.txt inputDir workDir
 ## make sure work dir exists before running the pipeline
 
 

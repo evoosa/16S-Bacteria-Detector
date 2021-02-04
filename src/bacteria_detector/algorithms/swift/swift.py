@@ -1,10 +1,31 @@
 from bacteria_detector import config
 import os
 
+swift_script_dir = os.path.dirname(os.path.realpath(__file__))
+config_file_path = os.path.join(swift_script_dir, "config", "config.txt")
 
-# TODO - queue and ram is different for some runs?
+
+def create_swift_conf_file():
+    """ Create swift's config file """
+    config_params = f"""
+    #!/usr/bash 
+    CUTADAPT=/apps/RH7U2/gnu/python/2.7.12/bin/cutadapt
+    VSEARCH= # FIXME
+    PRIMERS={swift_script_dir}/config/primers_16S_V1-9_anchored.fasta
+    READLEN=130
+    CLUSTERID=0.97
+    CLASSIFIER_seq={swift_script_dir}/config/silva_132_99_16S.qza
+    CLASSIFIER_tax={swift_script_dir}/config/consensus_taxonomy_7_levels.qza
+    """
+    with open(config_file_path, 'w') as config_file:
+        config_file.write(config_params)
+    print(f'[---] Created swift\'s config file in "{config_file_path}" ')
+
+
 def get_run_cmd(sample_name: str):
     """ Get the command needed to run swift's algorithm on the given sample data """
-    output_dir = os.path.join(config.OUTPUT_DIR, sample_name)
-    return f'mkdir -p {output_dir}; ./q2wkflow_v2.sh ./config/config.txt {os.path.join(config.DEFAULT_INPUT_DIR, sample_name + "_swift")} {output_dir}'
-
+    output_dir = os.path.join(config.OUTPUT_DIR, sample_name, 'swift')
+    input_dir = os.path.join(config.DEFAULT_INPUT_DIR, sample_name + "_swift")
+    swift_script_path = os.path.join(swift_script_dir, "q2wkflow_v2.sh")
+    # TODO - mkdir directory!!!
+    return f'{swift_script_path} {config_file_path} {input_dir} {output_dir}'
