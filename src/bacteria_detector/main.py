@@ -16,7 +16,7 @@ def main():
             run_no_cluster_cmd = get_run_on_cluster_cmd(sample_name, algorithm)
             print(f"command to run: '{run_no_cluster_cmd}'")
         else:
-            print(f"\n'{sample_dir}' has an unsupported algorithm! skipping..")
+            print(f"\n[XXX] '{sample_dir}' has an unsupported algorithm! skipping..")
     # run command on cluster
     # echo run results
 

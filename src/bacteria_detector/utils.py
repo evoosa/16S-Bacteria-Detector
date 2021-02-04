@@ -10,7 +10,7 @@ def get_run_algorithm_cmd(sample_name: str, algorithm: str) -> str:
     elif algorithm == 'test':
         return test.get_run_cmd(sample_name)
     else:
-        print(f'algorithm: "{algorithm}" not supported!')
+        print(f'[XXX] algorithm: "{algorithm}" not supported!')
         return ''
 
 
