@@ -6,6 +6,8 @@ def get_run_algorithm_cmd(sample_name: str, algorithm: str) -> str:
     """ Get the command needed to run the given algorithm on the sample data """
     if algorithm == 'swift':
         return swift.get_run_cmd(sample_name)
+    elif algorithm == 'test':
+        return
     else:
         print(f'algorithm: "{algorithm}" not supported!')
         return ''
