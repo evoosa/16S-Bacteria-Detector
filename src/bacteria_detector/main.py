@@ -10,7 +10,7 @@ def main():
         algorithm = str(sample_dir.split('_')[-1])
         sample_name = '_'.join(sample_dir.split('_')[:-1])
         create_directory_if_missing(os.path.join(config.OUTPUT_DIR, sample_name))
-
+        print('\n-------------------------------------------------\n')
         if algorithm in config.SUPPORTED_ALGORITHMS:
             print(f"\n'{sample_dir}' uses '{algorithm}' algorithm")
             create_directory_if_missing(os.path.join(config.OUTPUT_DIR, sample_name, algorithm))
