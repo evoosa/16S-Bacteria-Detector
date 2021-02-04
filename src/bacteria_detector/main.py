@@ -1,10 +1,10 @@
 import os
 from bacteria_detector import config
 from bacteria_detector.utils import get_run_on_cluster_cmd
-import datetime
 
 
 def main():
+    # Create the output directory
     if not os.path.exists(config.output_dir):
         os.makedirs(config.output_dir)
     sample_dirs = os.listdir(config.DEFAULT_INPUT_DIR)
@@ -21,4 +21,5 @@ def main():
     # echo run results
 
 
-main()
+if __name__ == '__main__':
+    main()
