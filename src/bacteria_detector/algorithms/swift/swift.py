@@ -9,8 +9,8 @@ def create_swift_conf_file():
     """ Create swift's config file """
     config_params = f"""
     #!/usr/bash 
-    CUTADAPT=/apps/RH7U2/gnu/python/2.7.12/bin/cutadapt
-    VSEARCH= # FIXME
+    CUTADAPT={swift_script_dir}/cutadapt
+    VSEARCH={swift_script_dir}/vsearch
     PRIMERS={swift_script_dir}/config/primers_16S_V1-9_anchored.fasta
     READLEN=130
     CLUSTERID=0.97
@@ -27,5 +27,4 @@ def get_run_cmd(sample_name: str):
     output_dir = os.path.join(config.OUTPUT_DIR, sample_name, 'swift')
     input_dir = os.path.join(config.DEFAULT_INPUT_DIR, sample_name + "_swift")
     swift_script_path = os.path.join(swift_script_dir, "q2wkflow_v2.sh")
-    # TODO - mkdir directory!!!
     return f'{swift_script_path} {config_file_path} {input_dir} {output_dir}'

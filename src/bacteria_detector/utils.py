@@ -20,7 +20,7 @@ def get_run_on_cluster_cmd(sample_name: str, algorithm: str) -> str:
     """ Get the bsub command to run on the cluster """
     run_alg_cmd = get_run_algorithm_cmd(sample_name, algorithm)
     log_path = os.path.join(config.RUN_LOG_OUTPUT_DIR, sample_name)
-    return f'bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {log_path} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
+    return f'LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/labs/bfreich/maork/.conda/envs/bacteria_detector/lib/ |  bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name}_{algorithm} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
 
 
 def create_directory_if_missing(dir_name):
@@ -30,7 +30,10 @@ def create_directory_if_missing(dir_name):
 
 def prepare_for_run():
     create_swift_conf_file()
-    # Create the output directory, and log directory
     create_directory_if_missing(config.OUTPUT_DIR)
     create_directory_if_missing(config.RUN_LOG_OUTPUT_DIR)
 
+
+def run_cmd(cmd):
+    print(f'[---] running: "{cmd}"')
+    os.system(cmd)

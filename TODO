@@ -2,3 +2,4 @@
 # TODO - installation guide! pip install etc..
 # TODO - create a run scripyt to be installed automatically, get input dir and validate it
 # TODO - queue and ram is different for some runs?
+# TODO - output the output directories when done, wait for run to be done?
