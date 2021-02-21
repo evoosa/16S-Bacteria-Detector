@@ -12,3 +12,4 @@ RUN_LOG_OUTPUT_DIR = f'{OUTPUT_DIR}_run_logs'
 DEFAULT_QUEUE = 'gromacs'  # 'public-himem'
 DEFAULT_JOB_CPU = '1'
 DEFAULT_JOB_MEM = '16000'
+

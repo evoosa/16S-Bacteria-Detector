@@ -2,6 +2,7 @@ from bacteria_detector import config
 import os
 
 swift_script_dir = os.path.dirname(os.path.realpath(__file__))
+swift_config_dir = os.path.join(swift_script_dir, 'config')
 config_file_path = os.path.join(swift_script_dir, "config", "config.txt")
 
 
@@ -9,13 +10,13 @@ def create_swift_conf_file():
     """ Create swift's config file """
     config_params = f"""
     #!/usr/bash 
-    CUTADAPT={swift_script_dir}/cutadapt
-    VSEARCH={swift_script_dir}/vsearch
-    PRIMERS={swift_script_dir}/config/primers_16S_V1-9_anchored.fasta
+    CUTADAPT=~/.conda/envs/qiime2-2020.8/bin/cutadapt
+    VSEARCH=~/.conda/envs/qiime2-2020.8/bin/vsearch
+    PRIMERS={swift_config_dir}/primers_16S_V1-9_anchored.fasta
     READLEN=130
     CLUSTERID=0.97
-    CLASSIFIER_seq={swift_script_dir}/config/silva_132_99_16S.qza
-    CLASSIFIER_tax={swift_script_dir}/config/consensus_taxonomy_7_levels.qza
+    CLASSIFIER_seq={swift_config_dir}/silva_132_99_16S.qza
+    CLASSIFIER_tax={swift_config_dir}/consensus_taxonomy_7_levels.qza
     """
     with open(config_file_path, 'w') as config_file:
         config_file.write(config_params)

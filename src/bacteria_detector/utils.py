@@ -20,7 +20,8 @@ def get_run_on_cluster_cmd(sample_name: str, algorithm: str) -> str:
     """ Get the bsub command to run on the cluster """
     run_alg_cmd = get_run_algorithm_cmd(sample_name, algorithm)
     log_path = os.path.join(config.RUN_LOG_OUTPUT_DIR, sample_name)
-    return f'LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/labs/bfreich/maork/.conda/envs/bacteria_detector/lib/ |  bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name}_{algorithm} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
+    # return f'LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/labs/bfreich/maork/.conda/envs/bacteria_detector/lib/ |  bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name}_{algorithm} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
+    return f'bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name}_{algorithm} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
 
 
 def create_directory_if_missing(dir_name):
