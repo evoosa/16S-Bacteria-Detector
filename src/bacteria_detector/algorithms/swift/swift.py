@@ -25,7 +25,7 @@ def create_swift_conf_file():
 
 def get_run_cmd(sample_name: str, output_dir: str, input_dir: str) -> str:
     """ Get the command needed to run swift's algorithm on the given sample data """
-    output_dir = os.path.join(output_dir, sample_name, 'swift')
-    input_dir = os.path.join(input_dir, sample_name + "_swift")
+    output_dir = os.path.join(output_dir, sample_name)
+    input_dir = os.path.join(input_dir, sample_name)
     swift_script_path = os.path.join(swift_script_dir, "q2wkflow_v2.sh")
     return f'{swift_script_path} {config_file_path} {input_dir} {output_dir}'
