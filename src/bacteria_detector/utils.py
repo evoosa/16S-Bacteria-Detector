@@ -22,7 +22,7 @@ def get_run_on_cluster_cmd(sample_name: str, algorithm: str, log_dir: str, outpu
     """ Get the bsub command to run on the cluster """
     run_alg_cmd = get_run_algorithm_cmd(sample_name, algorithm, output_dir, input_dir)
     log_path = os.path.join(log_dir, sample_name)
-    return f'bsub -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name}_{algorithm} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
+    return f'bsub -u {config.DEFAULT_MAIL_USER} -q {config.DEFAULT_QUEUE} -n {config.DEFAULT_JOB_CPU} -R "rusage[mem={config.DEFAULT_JOB_MEM}]" -J {sample_name}_{algorithm} -o {log_path}.out -e {log_path}.err {run_alg_cmd}'
 
 
 def create_directory_if_missing(dir_name: str):

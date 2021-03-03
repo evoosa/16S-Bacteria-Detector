@@ -1,6 +1,6 @@
 import datetime
 import os
-
+from bacteria_detector.config import DEFAULT_MAIL_USER
 from bacteria_detector.utils import get_run_on_cluster_cmd, create_directory_if_missing, prepare_for_run, \
     get_args_parser
 
@@ -17,8 +17,10 @@ def main(args):
         create_directory_if_missing(os.path.join(output_dir, sample_name))
         print(f'\n---------------------- {sample_name} ----------------------\n')
         run_on_cluster_cmd = get_run_on_cluster_cmd(sample_name, args.algorithm, log_dir, output_dir, args.input_dir)
-        print(run_on_cluster_cmd)
+        print(f'\nRunning:\n{run_on_cluster_cmd}\n')
         # run_cmd(run_on_cluster_cmd)
+    print(f'\n--------------------- Run Info -------------------------\n')
+    print(f'\nOutput Directory: {output_dir}\n\nLog Directory: {log_dir}\n\nMail will be sent to: {DEFAULT_MAIL_USER}\n')
 
 
 if __name__ == '__main__':
