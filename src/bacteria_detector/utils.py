@@ -3,6 +3,7 @@ from bacteria_detector.algorithms.swift import swift
 from bacteria_detector.algorithms.test import test
 import os
 from bacteria_detector.algorithms.swift.swift import create_swift_conf_file
+import argparse
 
 
 def get_run_algorithm_cmd(sample_name: str, algorithm: str) -> str:
@@ -30,7 +31,10 @@ def create_directory_if_missing(dir_name):
 
 
 def prepare_for_run():
+    """ Prepare the environment for the run """
+    # create swift's config file
     create_swift_conf_file()
+    # create log and output dirs
     create_directory_if_missing(config.OUTPUT_DIR)
     create_directory_if_missing(config.RUN_LOG_OUTPUT_DIR)
 
@@ -38,3 +42,11 @@ def prepare_for_run():
 def run_cmd(cmd):
     print(f'[---] running: "{cmd}"')
     os.system(cmd)
+
+
+def get_args_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input-dir', required=True, help='Input dir containing the samples to be processed')
+    parser.add_argument('-o', '--outupt-dir', required=True, help='Output directory for the results and logs')
+    parser.add_argument('-a', '--algorithm', required=True, help='Run samples through swift/smurf', choices=['swift', 'smurf'])
+    return parser.parse_args()
