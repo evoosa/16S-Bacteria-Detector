@@ -45,7 +45,6 @@ def prepare_for_run(algorithm: str, output_dir: str, log_dir: str):
 
 
 def run_cmd(cmd: str):
-    print(f'[---] running: "{cmd}"')
     os.system(cmd)
 
 
